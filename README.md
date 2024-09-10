@@ -3,7 +3,7 @@
 Learning Goals
 
 Familiarize ourselves with relevant datasets, reports and case studies.
-Quantify the extent of educational inequality within and across nations.
+Quantify the extent of inequality and education across nations.
 Explore statistical measures (such as Gini coefficients) to assess disparities in educational resources, funding, and opportunities.
 Gather relevant data on education indicators and poverty metrics.
 Interpret coefficients: Understand how changes in education variables affect poverty.
