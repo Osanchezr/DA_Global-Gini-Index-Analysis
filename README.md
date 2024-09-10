@@ -1,20 +1,32 @@
-# project_IHG6
+# Unraveling the Link Between Education Inequality and Income Distribution
 
 Learning Goals
 
+Familiarize ourselves with relevant datasets, reports and case studies.
+Quantify the extent of educational inequality within and across nations.
+Explore statistical measures (such as Gini coefficients) to assess disparities in educational resources, funding, and opportunities.
+Gather relevant data on education indicators and poverty metrics.
+Interpret coefficients: Understand how changes in education variables affect poverty.
+
 Variables
 
-Data types, operators and structures
+Data sets. Handle missing values: Impute or remove missing data.
+Standardize units: Ensure consistency (e.g., convert literacy rates to percentages).
+Merge datasets: Combine education and poverty data. 
+Exploratory Data Analysis (EDA), 
 
 
 Introduction
 
-How does inequality in access to education impact income distribution? 
+As we embark on this data-driven exploration, we’ll analyze cross-country data and uncover patterns that illuminate the intricate relationship between public spending, education and income.
 
-Hypothesis: Countries with higher inequality tend to invest less in education and have lower literacy rates, perpetuating the cycle of poverty.
+Our Hypothesis: Countries with higher inequality tend to invest less in education perpetuating the cycle of poverty.
+
+Our working hypothesis posits that countries grappling with higher income inequality often find themselves caught in a discouraging pattern. 
+These nations tend to allocate fewer resources to education, resulting in limited educational opportunities for marginalized populations. As a result, this perpetuates the existing income gaps.
 
 
-Links
+Resources:
 
 https://ourworldindata.org/poverty
 https://ourworldindata.org/economic-inequality
