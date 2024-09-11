@@ -22,24 +22,20 @@ def clean_columns(df1, df3, df5, df6):
     
     Returns:
     tuple: DataFrames limpios.
-    """
-    df1 = df1[['region_name', 'region_code', 'country_name', 'country_code','reporting_year','gini','poverty_line', 'headcount','poverty_gap','reporting_pop', 'reporting_gdp']]
-    df1["codigo"] = df1['country_code'] + "_" + df1['reporting_year'].astype(str)
-    
-    df3["codigo"] = df3['Code'] + "_" + df3['Year'].astype(str)
-    df3 = df3[["codigo", "Expected years of schooling"]]
-    df3.rename(columns={"Expected years of schooling": "expected_years_school"}, inplace=True)
-    
-    df5["codigo"] = df5['Code'] + "_" + df5['Year'].astype(str)
-    df5 = df5[["codigo", "Historical and more recent expenditure estimates"]]
-    df5.rename(columns={"Historical and more recent expenditure estimates": "spend_public_education"}, inplace=True)
-    
-    df6.rename(columns={"Alpha-3 code": "country_code", "Latitude (average)": "Latitude", "Longitude (average)": "Longitude"}, inplace=True)
-    df6 = df6[["country_code", "Latitude", "Longitude"]]
-    
+    """ 
+    df1.columns = df1.columns.str.lower().str.replace(' ', '_')
+    df3.columns = df3.columns.str.lower().str.replace(' ', '_')
+    df5.columns = df5.columns.str.lower().str.replace(' ', '_')
+    df6.columns = df6.columns.str.lower().str.replace(' ', '_')
+
+
+    df3.rename(columns={"expected_years_of_schooling": "expected_years_school"}, inplace=True)
+    df5.rename(columns={"historical_and_more_recent_expenditure_estimates": "spend_public_education"}, inplace=True)  
+    df6.rename(columns={"alpha-3_code": "country_code", "latitude_(average)": "latitude", "longitude_(average)": "longitude"}, inplace=True)
+      
     return df1, df3, df5, df6
 
-def merge_df(df1, df3, df5, df6):
+def merge_dfs(df1, df3, df5, df6):
     """
     Une los DataFrames en uno solo basado en la columna 'codigo' y 'country_code'.
     
@@ -49,9 +45,19 @@ def merge_df(df1, df3, df5, df6):
     Returns:
     pd.DataFrame: DataFrame unido.
     """
+    df1["codigo"] = df1['country_code'] + "_" + df1['reporting_year'].astype(str)
+    df3["codigo"] = df3['code'] + "_" + df3['year'].astype(str)
+    df5["codigo"] = df5['code'] + "_" + df5['year'].astype(str)
+
+    df1 = df1[['region_name', 'region_code', 'country_name', 'country_code','reporting_year','gini','poverty_line', 'headcount','poverty_gap','reporting_pop', 'reporting_gdp',"codigo"]]
+    df3 = df3[["codigo", "expected_years_school"]]
+    df5 = df5[["codigo", "spend_public_education"]]
+    df6 = df6[["country_code", "latitude", "longitude"]]
+
     df_merged = pd.merge(df1, df3, on='codigo', how='left')
     df_merged = pd.merge(df_merged, df5, on='codigo', how='left')
     df_merged = pd.merge(df_merged, df6, on='country_code', how='left')
+
     return df_merged
 
 def limit_analitic(df):
@@ -67,7 +73,7 @@ def limit_analitic(df):
     df = df[(df["reporting_year"] >= 2000) & (df["reporting_year"] <= 2019)]
     return df
 
-def valuenull(df):
+def clean_nulls(df):
     """
     Limpia los valores nulos en el DataFrame, manteniendo solo filas con suficientes datos y llenando valores nulos.
     
@@ -77,40 +83,25 @@ def valuenull(df):
     Returns:
     pd.DataFrame: DataFrame limpio.
     """
-    num_columns = len(df.columns)
-    df = df.dropna(thresh=num_columns - 3)
-    
     df['expected_years_school'] = df.groupby('country_name')['expected_years_school'].transform(lambda x: x.fillna(x.mean()))
     df['spend_public_education'] = df.groupby('country_name')['spend_public_education'].transform(lambda x: x.fillna(x.mean()))
-    
+    num_columns = len(df.columns)
+    df = df.dropna(thresh=num_columns - 3)  
     df = df.dropna(subset=["expected_years_school", "spend_public_education"])
-    
     return df
 
-# Ejemplo de uso
-if __name__ == "__main__":
-    # Rutas de los archivos
-    paths = {
-        "df1": "C:/Users/osanc/Desktop/IronHack/Sem_3/Proyecto/pip.csv",
-        "df3": "C:/Users/osanc/Desktop/IronHack/Sem_3/Proyecto/expected-years-of-schooling-vs-share-in-extreme-poverty.csv",
-        "df5": "C:/Users/osanc/Desktop/IronHack/Sem_3/Proyecto/total-government-expenditure-on-education-gdp.csv",
-        "df6": "C:/Users/osanc/Desktop/IronHack/Sem_3/Proyecto/country-coord.csv"
-    }
+def convertir_anio_a_fecha(df, columna_anio):
+    """
+    Convierte una columna de años enteros a fechas con el formato de datetime.
     
-    # Cargar datos
-    dfs = load_data(paths)
+    Parámetros:
+    df (pd.DataFrame): El DataFrame que contiene la columna de años.
+    columna_anio (str): El nombre de la columna que contiene los años.
     
-    # Limpiar columnas
-    df1, df3, df5, df6 = clean_columns(dfs["df1"], dfs["df3"], dfs["df5"], dfs["df6"])
+    Retorna:
+    pd.DataFrame: El DataFrame con la columna de años convertida a datetime.
+    """
+    # Convertir la columna de años a datetime (1 de enero por defecto)
+    df[columna_anio] = pd.to_datetime(df[columna_anio], format='%Y')
     
-    # Unir DataFrames
-    df_merged = merge_df(df1, df3, df5, df6)
-    
-    # Limitar datos
-    df_merged = limit_analitic(df_merged)
-    
-    # Limpiar valores nulos
-    df_merged = valuenull(df_merged)
-    
-    # Mostrar el DataFrame final
-    print(df_merged.head())
+    return df
