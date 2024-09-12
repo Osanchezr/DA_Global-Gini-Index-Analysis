@@ -1,5 +1,7 @@
 # Unraveling the Link Between Education Inequality and Income Distribution
 
+![Elegant Circle Signature Photography Logo (1)](https://github.com/user-attachments/assets/0df7f0b6-732c-4343-b981-8a4630eca92b)
+
 Learning Goals
 
 Familiarize ourselves with relevant datasets, reports and case studies.
