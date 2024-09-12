@@ -28,14 +28,15 @@ Our working hypothesis posits that countries grappling with higher income inequa
 These nations tend to allocate fewer resources to education, resulting in limited educational opportunities for marginalized populations. As a result, this perpetuates the existing income gaps.
 
 
+
+
+Presentation:
+
+https://www.canva.com/design/DAGQh8L4D30/YlLkzOHwtVFGVTPFPcQqCw/view?utm_content=DAGQh8L4D30&utm_campaign=designshare&utm_medium=link&utm_source=editor
+
+
 Resources:
 
-https://ourworldindata.org/poverty
-https://ourworldindata.org/economic-inequality
-https://ourworldindata.org/financing-education
-https://ourworldindata.org/grapher/completion-rate-of-upper-secondary-education-sdg
-https://ourworldindata.org/grapher/expected-years-of-schooling-vs-share-in-extreme-poverty
-https://ourworldindata.org/grapher/gini-coefficient-wid-vs-pip
-https://ourworldindata.org/grapher/population-having-attained-at-least-basic-education
+https://ourworldindata.org
 
 
