@@ -28,11 +28,11 @@ Our working hypothesis posits that countries grappling with higher income inequa
 These nations tend to allocate fewer resources to education, resulting in limited educational opportunities for marginalized populations. As a result, this perpetuates the existing income gaps.
 
 
-
-
-#Presentation:
+Presentation:
 
 https://www.canva.com/design/DAGQh8L4D30/YlLkzOHwtVFGVTPFPcQqCw/view?utm_content=DAGQh8L4D30&utm_campaign=designshare&utm_medium=link&utm_source=editor
+
+
 
 Resources:
 
