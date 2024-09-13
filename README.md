@@ -33,7 +33,6 @@ Presentation:
 https://www.canva.com/design/DAGQh8L4D30/YlLkzOHwtVFGVTPFPcQqCw/view?utm_content=DAGQh8L4D30&utm_campaign=designshare&utm_medium=link&utm_source=editor
 
 
-
 Resources:
 
 https://ourworldindata.org
